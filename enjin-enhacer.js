@@ -42,7 +42,7 @@
     var TAGS = 'tags';
     var FLASH_HEADER = 'flash-header';
     var WOWPROGRESS_LINK = 'wowprogress-link';
-    this.enhacements = elem.enhacements.split(',');
+    this.enhacements = elem.enhacements && elem.enhacements.split(',');
 
     var that = this;
 
