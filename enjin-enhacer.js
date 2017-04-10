@@ -138,6 +138,7 @@
     if (document.body !== null && typeof document.body !== undefined) {
       enjinEnhacer.increaseMicroTags();
       enjinEnhacer.enhacedLink();
+      enjinEnhacer.enhaceWowprogressLink();
 
       enjinEnhacer.enhaceTags();
       enjinEnhacer.unblockFlashHeader();
