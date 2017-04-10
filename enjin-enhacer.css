@@ -1,0 +1,64 @@
+/******************************************************/
+/** Enjin Enhacer *************************************/
+/** Author: ImperdibleSoft ****************************/
+/** Website: http://www.imperdiblesoft.com ************/
+/******************************************************/
+
+/******************************************************/
+/** GENERICS ******************************************/
+/******************************************************/
+/* On big screens, scale background image */
+@media screen and (min-width: 1920px) {
+  body {
+    background-position: top center;
+    background-size: cover;
+  }
+}
+
+/* Display a rectangle wrapper to custom tags */
+.tag-text,
+.m_members .table .block-container .items-list .col.col-tags span,
+.element_username {
+  padding: 2px 5px;
+  margin: 2px;
+  background-color: rgba(46, 49, 54, 0.8) !important;
+  border-radius: 4px;
+  text-align: center;
+}
+
+/* Hide tags column */
+.col-tags {
+  display: none !important;
+}
+
+/* Increase microtags' size */
+.icon_microtag {
+  width: 12px;
+  height: 12px;
+  padding: 3px !important;
+  margin: 2px !important;
+  margin-top: 0px !important;
+  border-radius: 3px !important;
+  box-sizing: border-box;
+  text-align: center !important;
+}
+
+/******************************************************/
+/** CHAT MODULE ***************************************/
+/******************************************************/
+/* Show text in black, on Chat module */
+.online_users_container .section .section-header * {
+  color: black;
+}
+
+
+/******************************************************/
+/** WOWPROGRESS.COM MODULE ****************************/
+/******************************************************/
+/* Improve wowprogress.com module */
+.wowprogress_wrap .wowprogress_box {
+  max-width: 33.33%;
+  padding: 5px;
+  margin: 0px;
+  box-sizing: border-box;
+}
