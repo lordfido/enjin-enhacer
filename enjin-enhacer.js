@@ -8,18 +8,20 @@
   <script
     src="https://lordfido.github.io/enjin-enhacer/enjin-enhacer.js"
     id="enjin-enhacer"
-    region="us"
-    realm="quel'thalas"
-    guild="Iterûm"
+    region="Your region"
+    realm="Your realm"
+    guild="Your guild name"
+    enhacements="tags,flash-header,wowprogress-link"   // Any of these elements can be removed
   ></script>
 
   DYNAMIC SCRIPT
   var enjinEnhacer = document.createElement("script");
   enjinEnhacer.id="enjin-enhacer"
   enjinEnhacer.src = "https://lordfido.github.io/enjin-enhacer/enjin-enhacer.js";
-  enjinEnhacer.region = "us";
-  enjinEnhacer.realm = "quel'thalas";
-  enjinEnhacer.guild = "Iterûm";
+  enjinEnhacer.region = "Your region";
+  enjinEnhacer.realm = "Your realm";
+  enjinEnhacer.guild = "Your guild name";
+  enjinEnhacer.enhacements = "tags,flash-header,wowprogress-link";   // Any of these elements can be removed
   document.head.appendChild(enjinEnhacer);
 */
 
@@ -36,6 +38,11 @@
     this.region = elem.region;
     this.realm = elem.realm;
     this.guild = elem.guild;
+
+    var TAGS = 'tags';
+    var FLASH_HEADER = 'flash-header';
+    var WOWPROGRESS_LINK = 'wowprogress-link';
+    this.enhacements = elem.enhacements.split(',');
 
     var that = this;
 
@@ -65,22 +72,6 @@
       log('enhacedStyles has been loaded.');
     }
     
-    // Remove 4 layers that are blocking Flash elements to be clickable (and playable) on website's header
-    this.unblockFlashHeader = function() {
-      var elem;
-      elem = document.querySelector('.special_container .m_header .tl');
-      if (elem && elem.remove) elem.remove();
-
-      elem = document.querySelector('.special_container .m_header .tr');
-      if (elem && elem.remove) elem.remove();
-
-      elem = document.querySelector('.special_container .m_header .bl');
-      if (elem && elem.remove) elem.remove();
-
-      elem = document.querySelector('.special_container .m_header .br');
-      if (elem && elem.remove) elem.remove();
-    }
-    
     // Improve "descriptive titles" for enjin microtags
     this.increaseMicroTags = function() {
       var microTags = document.getElementsByClassName('icon_microtag');
@@ -96,13 +87,40 @@
       var footer = document.querySelector('#page-footer .left');
       footer.innerHTML = `This website is using <a href="${URLs.repo}" target="_blank">Enjin Enhacer</a>`;
     }
+    
+    /* OPTIONAL ENHACEMENTS */
+    this.enhaceTags = function() {
+      if (TAGS.indexOf(enhacements) >= 0) {
+        document.body.classList.add('EnjinEnhacer--tags');
+      }
+    }
+
+    // Remove 4 layers that are blocking Flash elements to be clickable (and playable) on website's header
+    this.unblockFlashHeader = function() {
+      if (FLASH_HEADER.indexOf(this.enhacements) >= 0) {
+        var elem;
+        elem = document.querySelector('.special_container .m_header .tl');
+        if (elem && elem.remove) elem.remove();
+
+        elem = document.querySelector('.special_container .m_header .tr');
+        if (elem && elem.remove) elem.remove();
+
+        elem = document.querySelector('.special_container .m_header .bl');
+        if (elem && elem.remove) elem.remove();
+
+        elem = document.querySelector('.special_container .m_header .br');
+        if (elem && elem.remove) elem.remove();
+      }
+    }
 
     // Complete wowprogress.com link to our guild's profile
     this.enhaceWowprogressLink = function() {
-      var wowprogressLink = document.querySelector('.wowprogress_link a');
-      if (wowprogressLink) {
-        wowprogressLink.href += `guild/${that.region}/${that.parseRealm(that.realm)}/${that.guild}`;
-        wowprogressLink.target = '_blank';
+      if (WOWPROGRESS_LINK.indexOf(this.enhacements) >= 0){
+        var wowprogressLink = document.querySelector('.wowprogress_link a');
+        if (wowprogressLink) {
+          wowprogressLink.href += `guild/${that.region}/${that.parseRealm(that.realm)}/${that.guild}`;
+          wowprogressLink.target = '_blank';
+        }
       }
     }
   };
@@ -118,9 +136,12 @@
 
     // If body is available, so we can mount things on it
     if (document.body !== null && typeof document.body !== undefined) {
-      enjinEnhacer.unblockFlashHeader();
       enjinEnhacer.increaseMicroTags();
       enjinEnhacer.enhacedLink();
+      enjinEnhacer.enhaceWowprogressLink();
+
+      enjinEnhacer.enhaceTags();
+      enjinEnhacer.unblockFlashHeader();
       enjinEnhacer.enhaceWowprogressLink();
 
     // If body is not available
