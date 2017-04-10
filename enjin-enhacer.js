@@ -5,11 +5,21 @@
 /******************************************************/
 /*
   INLINE SCRIPT
-  <script src="http://lordfido.github.io/enjin-enhacer/enjin-enhacer.js"></script>
+  <script
+    src="https://lordfido.github.io/enjin-enhacer/enjin-enhacer.js"
+    id="enjin-enhacer"
+    region="us"
+    realm="quel'thalas"
+    guild="Iterûm"
+  ></script>
 
   DYNAMIC SCRIPT
   var enjinEnhacer = document.createElement("script");
-  enjinEnhacer.src = "http://lordfido.github.io/enjin-enhacer/enjin-enhacer.js";
+  id="enjin-enhacer"
+  enjinEnhacer.src = "https://lordfido.github.io/enjin-enhacer/enjin-enhacer.js";
+  enjinEnhacer.region = "us";
+  enjinEnhacer.realm = "quel'thalas";
+  enjinEnhacer.guild = "Iterûm";
   document.head.appendChild(enjinEnhacer);
 */
 
@@ -22,6 +32,11 @@
   }
 
   var Enhacer = function() {
+    var elem = document.getElementById('enjin-enhacer');
+    this.region = elem.region;
+    this.realm = elem.realm;
+    this.guild = elem.guild;
+
     var that = this;
 
     // Point where everything is gonna be mount
@@ -30,6 +45,13 @@
       enhacer: 'https://lordfido.github.io/enjin-enhacer/enjin-enhacer.js',
       repo: 'https://www.github.com/lordfido/enjin-enhacer/'
     };
+
+    this.parseRealm = function(realm) {
+      return realm
+        .replace("'", '-')
+        .replace(" ", '-')
+        .toLowerCase();
+    }
 
     // Add enhaced CSS
     this.loadNewStyles = function() {
@@ -69,9 +91,19 @@
       }
     }
     
+    // Place a link announcing Enjin Enhacer
     this.enhacedLink = function() {
       var footer = document.querySelector('#page-footer .left');
       footer.innerHTML = `This website is using <a href="${URLs.repo}" target="_blank">Enjin Enhacer</a>`;
+    }
+
+    // Complete wowprogress.com link to our guild's profile
+    this.enhaceWowprogressLink = function() {
+      var wowprogressLink = document.querySelector('.wowprogress_link a');
+      if (wowprogressLink) {
+        wowprogressLink.href += `guild/${that.region}/${that.parseRealm(that.realm)}/${that.guild}`;
+        wowprogressLink.target = '_blank';
+      }
     }
   };
 
