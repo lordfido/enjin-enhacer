@@ -15,7 +15,7 @@
 
   DYNAMIC SCRIPT
   var enjinEnhacer = document.createElement("script");
-  id="enjin-enhacer"
+  enjinEnhacer.id="enjin-enhacer"
   enjinEnhacer.src = "https://lordfido.github.io/enjin-enhacer/enjin-enhacer.js";
   enjinEnhacer.region = "us";
   enjinEnhacer.realm = "quel'thalas";
@@ -121,6 +121,7 @@
       enjinEnhacer.unblockFlashHeader();
       enjinEnhacer.increaseMicroTags();
       enjinEnhacer.enhacedLink();
+      enjinEnhacer.enhaceWowprogressLink();
 
     // If body is not available
     } else {
