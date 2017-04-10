@@ -16,9 +16,9 @@
 }
 
 /* Display a rectangle wrapper to custom tags */
-.tag-text,
-.m_members .table .block-container .items-list .col.col-tags span,
-.element_username {
+body.EnjinEnhacer--tags .tag-text,
+body.EnjinEnhacer--tags .m_members .table .block-container .items-list .col.col-tags span,
+body.EnjinEnhacer--tags .element_username {
   padding: 2px 5px;
   margin: 2px;
   background-color: rgba(46, 49, 54, 0.8) !important;
