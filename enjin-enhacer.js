@@ -42,7 +42,7 @@
     var TAGS = 'tags';
     var FLASH_HEADER = 'flash-header';
     var WOWPROGRESS_LINK = 'wowprogress-link';
-    this.enhacements = elem.enhacements && elem.enhacements.split(',');
+    this.enhacements = elem.enhacements ? elem.enhacements.split(',') : [];
 
     var that = this;
 
@@ -90,14 +90,14 @@
     
     /* OPTIONAL ENHACEMENTS */
     this.enhaceTags = function() {
-      if (TAGS.indexOf(enhacements) >= 0) {
+      if (that.enhacements.indexOf(TAGS) >= 0) {
         document.body.classList.add('EnjinEnhacer--tags');
       }
     }
 
     // Remove 4 layers that are blocking Flash elements to be clickable (and playable) on website's header
     this.unblockFlashHeader = function() {
-      if (FLASH_HEADER.indexOf(this.enhacements) >= 0) {
+      if (that.enhacements.indexOf(FLASH_HEADER) >= 0) {
         var elem;
         elem = document.querySelector('.special_container .m_header .tl');
         if (elem && elem.remove) elem.remove();
@@ -115,7 +115,7 @@
 
     // Complete wowprogress.com link to our guild's profile
     this.enhaceWowprogressLink = function() {
-      if (WOWPROGRESS_LINK.indexOf(this.enhacements) >= 0){
+      if (that.enhacements.indexOf(WOWPROGRESS_LINK) >= 0){
         var wowprogressLink = document.querySelector('.wowprogress_link a');
         if (wowprogressLink) {
           wowprogressLink.href += `guild/${that.region}/${that.parseRealm(that.realm)}/${that.guild}`;
@@ -138,7 +138,6 @@
     if (document.body !== null && typeof document.body !== undefined) {
       enjinEnhacer.increaseMicroTags();
       enjinEnhacer.enhacedLink();
-      enjinEnhacer.enhaceWowprogressLink();
 
       enjinEnhacer.enhaceTags();
       enjinEnhacer.unblockFlashHeader();
