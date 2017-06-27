@@ -21,15 +21,17 @@ body.EnjinEnhacer--tags .m_members .table .block-container .items-list .col.col-
 body.EnjinEnhacer--tags .element_username {
   padding: 2px 5px;
   margin: 2px;
-  background-color: rgba(46, 49, 54, 0.8) !important;
+  background-color: rgba(0, 0, 0, 0.8) !important;
   border-radius: 4px;
   text-align: center;
 }
 
 /* Hide tags column */
+/*
 .col-tags {
   display: none !important;
 }
+*/
 
 /* Increase microtags' size */
 .icon_microtag {
